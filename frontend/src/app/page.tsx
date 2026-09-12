@@ -1,5 +1,6 @@
 import React from 'react';
 import CesiumMapWrapper from '@/components/map/CesiumMapWrapper';
+import AIRiskEngine from '@/components/dashboard/AIRiskEngine';
 import { CloudRain, AlertTriangle, ArrowUpRight, ShieldAlert, Activity, Navigation2, Thermometer } from 'lucide-react';
 
 export default function Dashboard() {
@@ -37,33 +38,7 @@ export default function Dashboard() {
         <div className="flex-1 flex flex-col gap-4 overflow-y-auto pr-1 custom-scrollbar">
           
           {/* AI Risk Engine */}
-          <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-200">
-            <h3 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4 flex items-center justify-between">
-              AI Risk Engine
-              <span className="bg-primary/20 text-primary-foreground px-2 py-0.5 rounded text-[10px] font-bold">LIVE</span>
-            </h3>
-            
-            <div className="flex items-end gap-4 mb-6">
-              <div className="text-5xl font-black text-destructive tracking-tighter">91%</div>
-              <div className="pb-1">
-                <div className="text-sm font-bold text-destructive uppercase">CRITICAL</div>
-                <div className="text-xs font-medium text-gray-500 flex items-center gap-1">
-                  <ArrowUpRight size={12} className="text-destructive" /> Increasing
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              <RiskFactor label="Rainfall" value={89} />
-              <RiskFactor label="Soil Moisture" value={81} />
-              <RiskFactor label="Slope" value={72} />
-              <RiskFactor label="Historical Events" value={55} />
-            </div>
-
-            <button className="w-full mt-5 bg-gray-50 hover:bg-gray-100 text-gray-700 text-sm font-bold py-2 rounded-lg border border-gray-200 transition-colors">
-              VIEW EXPLANATION
-            </button>
-          </div>
+          <AIRiskEngine />
 
           {/* Weather Panel */}
           <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-200">
@@ -154,22 +129,7 @@ function KpiCard({ title, value, trend, status, icon: Icon }: any) {
   );
 }
 
-function RiskFactor({ label, value }: { label: string, value: number }) {
-  return (
-    <div>
-      <div className="flex justify-between text-xs font-bold text-gray-700 mb-1">
-        <span>{label}</span>
-        <span>{value}%</span>
-      </div>
-      <div className="w-full bg-gray-100 rounded-full h-2">
-        <div 
-          className="bg-navy h-2 rounded-full" 
-          style={{ width: `${value}%` }}
-        ></div>
-      </div>
-    </div>
-  );
-}
+
 
 function MapIcon() {
   return (
